@@ -1,0 +1,651 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adepoju John - Full-Stack Web Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    popover: {
+                        DEFAULT: "var(--popover)",
+                        foreground: "var(--popover-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["var(--font-sans)"],
+                }
+            },
+        }
+    };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --background: hsl(210 40% 98%);
+            --foreground: hsl(222.2 84% 4.9%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(222.2 84% 4.9%);
+            --popover: hsl(0 0% 100%);
+            --popover-foreground: hsl(222.2 84% 4.9%);
+            --primary: hsl(217.2 91.2% 59.8%);
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(210 40% 96%);
+            --secondary-foreground: hsl(222.2 47.4% 11.2%);
+            --muted: hsl(210 40% 96%);
+            --muted-foreground: hsl(215.4 16.3% 46.9%);
+            --accent: hsl(210 40% 96%);
+            --accent-foreground: hsl(222.2 47.4% 11.2%);
+            --destructive: hsl(0 84.2% 60.2%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(214.3 31.8% 91.4%);
+            --input: hsl(214.3 31.8% 91.4%);
+            --ring: hsl(217.2 91.2% 59.8%);
+            --radius: 8px;
+            --font-sans: "Inter", sans-serif;
+        }
+        
+        .dark {
+            --background: hsl(222.2 84% 4.9%);
+            --foreground: hsl(210 40% 98%);
+            --card: hsl(222.2 47.4% 11.2%);
+            --card-foreground: hsl(210 40% 98%);
+            --popover: hsl(222.2 47.4% 11.2%);
+            --popover-foreground: hsl(210 40% 98%);
+            --primary: hsl(217.2 91.2% 59.8%);
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(217.2 32.6% 17.5%);
+            --secondary-foreground: hsl(210 40% 98%);
+            --muted: hsl(217.2 32.6% 17.5%);
+            --muted-foreground: hsl(215 20.2% 65.1%);
+            --accent: hsl(217.2 32.6% 17.5%);
+            --accent-foreground: hsl(210 40% 98%);
+            --destructive: hsl(0 62.8% 30.6%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(217.2 32.6% 17.5%);
+            --input: hsl(217.2 32.6% 17.5%);
+            --ring: hsl(217.2 91.2% 59.8%);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            transition: all 0.3s ease;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(217.2 91.2% 45%) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <!-- @COMPONENT: Navigation [fixed header with dark mode toggle] -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-xl font-bold text-foreground">
+                    Adepoju John
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-muted-foreground hover:text-foreground transition-colors">Home</a>
+                    <a href="#about" class="text-muted-foreground hover:text-foreground transition-colors">About</a>
+                    <a href="#work" class="text-muted-foreground hover:text-foreground transition-colors">Work</a>
+                    <a href="#contact" class="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-muted hover:bg-accent transition-colors">
+                        <i class="fas fa-moon dark:hidden text-muted-foreground"></i>
+                        <i class="fas fa-sun hidden dark:block text-muted-foreground"></i>
+                    </button>
+                    
+                    <button class="md:hidden p-2 rounded-lg bg-muted hover:bg-accent transition-colors">
+                        <i class="fas fa-bars text-muted-foreground"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: HeroSection [main landing section] -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-8">
+                    Available for new projects
+                </span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 leading-tight">
+                I design and build 
+                <span class="gradient-text">modern, responsive</span> 
+                web solutions that bring ideas to life.
+            </h1>
+            
+            <p class="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+                Full-stack developer specializing in React, TailwindCSS, and modern web technologies. 
+                I create seamless digital experiences from concept to deployment, handling both frontend beauty and backend functionality.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#contact" 
+                   class="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all hover-lift">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Let's Talk
+                </a>
+                
+                <a href="https://wa.me/2347012345678" 
+                   data-implementation="Replace with actual WhatsApp number"
+                   class="inline-flex items-center px-8 py-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-all hover-lift">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- @COMPONENT: AboutSection [personal introduction and achievements] -->
+    <section id="about" class="py-20 px-6 bg-muted/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">About Me</h2>
+                <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Passionate about creating digital solutions that make a difference
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-foreground mb-4">Hi, I'm Adepoju John</h3>
+                    <p class="text-muted-foreground leading-relaxed">
+                        A dedicated full-stack web developer with a passion for creating modern, responsive web applications. 
+                        I specialize in React, TailwindCSS, and full-stack development, bringing both creative design vision 
+                        and technical expertise to every project.
+                    </p>
+                    <p class="text-muted-foreground leading-relaxed">
+                        My journey in web development started with a curiosity for how things work on the web, 
+                        and has evolved into a comprehensive skill set covering frontend frameworks, backend development, 
+                        database design, and modern deployment practices.
+                    </p>
+                    
+                    <div class="flex space-x-4 pt-4">
+                        <a href="https://wa.me/2347012345678" data-implementation="Replace with actual WhatsApp" 
+                           class="p-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/adepoju-john" data-implementation="Replace with actual LinkedIn" 
+                           class="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-linkedin text-lg"></i>
+                        </a>
+                        <a href="https://github.com/adepoju-john" data-implementation="Replace with actual GitHub" 
+                           class="p-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors">
+                            <i class="fab fa-github text-lg"></i>
+                        </a>
+                        <a href="https://twitter.com/adepoju_john" data-implementation="Replace with actual Twitter" 
+                           class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-foreground mb-6">Experience & Achievements</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-6 bg-card rounded-lg border border-border hover-lift">
+                            <div class="flex items-start space-x-4">
+                                <div class="p-2 bg-primary/10 rounded-lg">
+                                    <i class="fas fa-trophy text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-card-foreground">Top Rated Freelancer</h4>
+                                    <p class="text-muted-foreground text-sm">Maintained 5-star rating with 50+ completed projects</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 bg-card rounded-lg border border-border hover-lift">
+                            <div class="flex items-start space-x-4">
+                                <div class="p-2 bg-primary/10 rounded-lg">
+                                    <i class="fas fa-code text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-card-foreground">Full-Stack Expertise</h4>
+                                    <p class="text-muted-foreground text-sm">3+ years experience in React, Node.js, and modern web technologies</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 bg-card rounded-lg border border-border hover-lift">
+                            <div class="flex items-start space-x-4">
+                                <div class="p-2 bg-primary/10 rounded-lg">
+                                    <i class="fas fa-users text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-card-foreground">Team Leadership</h4>
+                                    <p class="text-muted-foreground text-sm">Led development teams on 10+ enterprise projects</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 bg-card rounded-lg border border-border hover-lift">
+                            <div class="flex items-start space-x-4">
+                                <div class="p-2 bg-primary/10 rounded-lg">
+                                    <i class="fas fa-rocket text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-card-foreground">Fast Delivery</h4>
+                                    <p class="text-muted-foreground text-sm">Consistently delivered projects 20% ahead of schedule</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: AboutSection -->
+
+    <!-- @COMPONENT: WorkSection [project showcase with cards] -->
+    <section id="work" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">Featured Work</h2>
+                <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    A selection of projects that showcase my skills in full-stack development
+                </p>
+            </div>
+            
+            <!-- @MAP: projects.map(project => ( -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="group bg-card rounded-xl border border-border overflow-hidden hover-lift">
+                    <!-- Modern e-commerce platform with clean product grid layout -->
+                    <div class="aspect-video bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450" 
+                             alt="E-commerce platform interface" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-card-foreground mb-2">E-Commerce Platform</h3>
+                        <p class="text-muted-foreground mb-4">
+                            Modern e-commerce solution built with React, Node.js, and Stripe integration. 
+                            Features include real-time inventory, payment processing, and admin dashboard.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">React</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Node.js</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">MongoDB</span>
+                            </div>
+                            <a href="#" data-implementation="Link to project demo/repo" 
+                               class="text-primary hover:text-primary/80 transition-colors">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group bg-card rounded-xl border border-border overflow-hidden hover-lift">
+                    <!-- Task management dashboard with kanban board layout -->
+                    <div class="aspect-video bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-950 dark:to-pink-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450" 
+                             alt="Task management dashboard" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-card-foreground mb-2">Task Management App</h3>
+                        <p class="text-muted-foreground mb-4">
+                            Collaborative task management platform with real-time updates, team collaboration, 
+                            and advanced project tracking capabilities.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Vue.js</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Express</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Socket.io</span>
+                            </div>
+                            <a href="#" data-implementation="Link to project demo/repo" 
+                               class="text-primary hover:text-primary/80 transition-colors">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group bg-card rounded-xl border border-border overflow-hidden hover-lift">
+                    <!-- Real estate website with property listings -->
+                    <div class="aspect-video bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450" 
+                             alt="Real estate website interface" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-card-foreground mb-2">Real Estate Platform</h3>
+                        <p class="text-muted-foreground mb-4">
+                            Comprehensive real estate platform with property listings, virtual tours, 
+                            mortgage calculator, and agent management system.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Next.js</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">PostgreSQL</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">AWS</span>
+                            </div>
+                            <a href="#" data-implementation="Link to project demo/repo" 
+                               class="text-primary hover:text-primary/80 transition-colors">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group bg-card rounded-xl border border-border overflow-hidden hover-lift">
+                    <!-- SaaS analytics dashboard with charts and metrics -->
+                    <div class="aspect-video bg-gradient-to-br from-orange-50 to-red-100 dark:from-orange-950 dark:to-red-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450" 
+                             alt="Analytics dashboard interface" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-card-foreground mb-2">Analytics Dashboard</h3>
+                        <p class="text-muted-foreground mb-4">
+                            Advanced analytics dashboard for SaaS products with real-time data visualization, 
+                            custom reports, and performance tracking.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">React</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">D3.js</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Python</span>
+                            </div>
+                            <a href="#" data-implementation="Link to project demo/repo" 
+                               class="text-primary hover:text-primary/80 transition-colors">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP -->
+            
+            <div class="text-center mt-12">
+                <a href="#" data-implementation="Link to full portfolio/GitHub" 
+                   class="inline-flex items-center px-6 py-3 bg-muted text-muted-foreground rounded-lg hover:bg-accent transition-colors">
+                    <i class="fab fa-github mr-2"></i>
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: WorkSection -->
+
+    <!-- @COMPONENT: ContactSection [contact form and CTAs] -->
+    <section id="contact" class="py-20 px-6 bg-muted/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Project in mind? Let's build it together.
+                </h2>
+                <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Ready to bring your ideas to life? Let's discuss your project and create something amazing together.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-foreground mb-4">Get in Touch</h3>
+                        <p class="text-muted-foreground mb-6">
+                            I'm always excited to work on new projects and collaborate with amazing people. 
+                            Whether you have a specific project in mind or just want to explore possibilities, 
+                            I'd love to hear from you.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <a href="https://wa.me/2347012345678" data-implementation="Replace with actual WhatsApp" 
+                           class="flex items-center p-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all hover-lift">
+                            <i class="fab fa-whatsapp text-xl mr-4"></i>
+                            <div>
+                                <div class="font-medium">Chat on WhatsApp</div>
+                                <div class="text-green-100 text-sm">Quick responses guaranteed</div>
+                            </div>
+                        </a>
+                        
+                        <div class="grid grid-cols-3 gap-4">
+                            <a href="https://linkedin.com/in/adepoju-john" data-implementation="Replace with actual LinkedIn" 
+                               class="p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all hover-lift text-center">
+                                <i class="fab fa-linkedin text-xl mb-2 block"></i>
+                                <div class="text-xs">LinkedIn</div>
+                            </a>
+                            
+                            <a href="https://github.com/adepoju-john" data-implementation="Replace with actual GitHub" 
+                               class="p-4 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-all hover-lift text-center">
+                                <i class="fab fa-github text-xl mb-2 block"></i>
+                                <div class="text-xs">GitHub</div>
+                            </a>
+                            
+                            <a href="https://twitter.com/adepoju_john" data-implementation="Replace with actual Twitter" 
+                               class="p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all hover-lift text-center">
+                                <i class="fab fa-twitter text-xl mb-2 block"></i>
+                                <div class="text-xs">Twitter</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-card p-8 rounded-xl border border-border">
+                    <form class="space-y-6" data-implementation="Add form validation and submission logic">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-card-foreground mb-2">Name</label>
+                            <input type="text" id="name" name="name" required
+                                   class="w-full px-4 py-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent outline-none transition-all" 
+                                   placeholder="Your full name" />
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-card-foreground mb-2">Email</label>
+                            <input type="email" id="email" name="email" required
+                                   class="w-full px-4 py-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent outline-none transition-all" 
+                                   placeholder="your.email@example.com" />
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-card-foreground mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                      class="w-full px-4 py-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent outline-none transition-all resize-none" 
+                                      placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-primary text-primary-foreground py-3 rounded-lg font-medium hover:bg-primary/90 transition-all hover-lift">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ContactSection -->
+
+    <!-- @COMPONENT: Footer [simple footer with social links] -->
+    <footer class="py-12 px-6 border-t border-border">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <div class="text-lg font-semibold text-foreground mb-2">Adepoju John</div>
+                    <p class="text-muted-foreground">Full-Stack Web Developer</p>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="https://wa.me/2347012345678" data-implementation="Replace with actual WhatsApp" 
+                       class="p-2 text-muted-foreground hover:text-foreground transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/adepoju-john" data-implementation="Replace with actual LinkedIn" 
+                       class="p-2 text-muted-foreground hover:text-foreground transition-colors">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/adepoju-john" data-implementation="Replace with actual GitHub" 
+                       class="p-2 text-muted-foreground hover:text-foreground transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://twitter.com/adepoju_john" data-implementation="Replace with actual Twitter" 
+                       class="p-2 text-muted-foreground hover:text-foreground transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-border text-center text-muted-foreground">
+                <p>&copy; 2024 Adepoju John. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // TODO: Implement proper React state management, form validation, and API integration
+        (function() {
+            // Dark mode toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference or default to 'light'
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            
+            if (currentTheme === 'dark') {
+                htmlElement.classList.add('dark');
+            }
+            
+            themeToggle.addEventListener('click', function() {
+                htmlElement.classList.toggle('dark');
+                
+                // Save theme preference
+                const theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Form submission handling (placeholder)
+            const contactForm = document.querySelector('form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // TODO: Implement actual form submission logic
+                alert('Thank you for your message! I\'ll get back to you soon.');
+            });
+            
+            // Add fade-in animation to elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all project cards and sections
+            document.querySelectorAll('section, .hover-lift').forEach(el => {
+                observer.observe(el);
+            });
+        })();
+    </script>
+</body>
+</html>
