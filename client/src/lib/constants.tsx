@@ -4,10 +4,10 @@ import musicFinder from "../assets/musicfinder.png";
 import portfolio from "../assets/portfolio.png"
 
 export const SOCIAL_LINKS = {
-  whatsapp: "https://wa.me/+23437517462",
-  linkedin: "https://linkedin.com/in/adepojujohn",
-  github: "https://github.com/johntizzyy",
-  twitter: "https://twitter.com/johntizzy5",
+  whatsapp: "https://wa.me/+2348137517462",
+  linkedin: "https://www.linkedin.com/in/adepoju-john-470bb6259/",
+  github: "https://github.com/Johntizzyy",
+  twitter: "https://x.com/JohnTizzy5",
 };
 
 export const PROJECTS = [

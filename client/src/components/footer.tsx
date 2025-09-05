@@ -9,7 +9,7 @@ export default function Footer() {
             adepoju.
           </div>
           <div className="text-muted-foreground text-sm" data-testid="footer-copyright">
-            © 2024 Adepoju John. All rights reserved.
+            © {new Date().getFullYear()} Adepoju John. All rights reserved.
           </div>
           <div className="flex gap-4" data-testid="footer-social-links">
             <a
