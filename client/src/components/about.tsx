@@ -1,7 +1,7 @@
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { SOCIAL_LINKS } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
-import Adepoju from "../assets/Adepoju.JPG";
+import Adepoju from "../assets/Adepoju.jpg";
 
 export default function About() {
   const ref = useScrollAnimation();
@@ -18,7 +18,7 @@ export default function About() {
   };
 
   const achievements = [
-    { title: "React Developer Award", subtitle: "Meta 2024" },
+    { title: "React Developer Award", subtitle: "meta 2024" },
     { title: "Frontend Developer certificate", subtitle: "TechNexus" },
     { title: "Open Source Contributor", subtitle: "GitHub " },
     { title: "5+ Years Experience", subtitle: "Web Development" },
