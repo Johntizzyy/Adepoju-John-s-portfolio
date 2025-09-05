@@ -17,7 +17,7 @@ export const PROJECTS = [
     category: "Portfolio Website",
     description: "Minimalist portfolio website with smooth animations and modern design.",
     image: portfolio,
-    link: "#",
+    link: "https://adepoju-john-portfolio.vercel.app/",
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ export const PROJECTS = [
     category:"Finance / Crypto Dashboard",
     description: "A web application that provides real-time cryptocurrency prices, market trends, and portfolio tracking using React and crypto APIs.",
     image: coinview,
-    link: "#",
+    link: "https://coin-view-delta.vercel.app/",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export const PROJECTS = [
     category: "React website",
     description: "A professional website for a consulting firm built with React and TailwindCSS.",
     image: lorins,
-    link: "#",
+    link: "https://lorins-consults.vercel.app/",
   },
     {
     id: 4,
@@ -41,7 +41,7 @@ export const PROJECTS = [
     category: "Music Streanming",
     description: "A music streaming app built with the iTunes API, allowing users to play 30-second previews of tracks and save their favorite songs.",
     image: musicFinder,
-    link: "#",
+    link: "https://music-finder-cyan.vercel.app/",
   },
 
   
